@@ -101,10 +101,18 @@ module LogStash
       end
 
       def setup_api_key(api_key)
-        return {} unless (api_key && api_key.value)
+        return {} unless (api_key&.value)
 
-        token = ::Base64.strict_encode64(api_key.value)
+        token = is_base64?(api_key.value) ?  api_key.value : Base64.strict_encode64(api_key.value)
         { 'Authorization' => "ApiKey #{token}" }
+      end
+
+      def is_base64?(string)
+        begin
+          string == Base64.strict_encode64(Base64.strict_decode64(string))
+        rescue ArgumentError
+          false
+        end
       end
 
       def get_transport_client_class
