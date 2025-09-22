@@ -1,3 +1,6 @@
+## 4.3.1
+  - Support both, encoded and non encoded api-key formats on plugin configuration [#203](https://github.com/logstash-plugins/logstash-filter-elasticsearch/pull/203)
+
 ## 4.3.0
   - ES|QL support [#194](https://github.com/logstash-plugins/logstash-filter-elasticsearch/pull/194)
 
